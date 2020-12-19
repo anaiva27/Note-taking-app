@@ -38,40 +38,18 @@ module.exports = function (app) {
   app.get("/api/notes", async function (req, res) {
     
     //.then((notes) => {
-      res.json(await getNotes());
+      //res.json(await getNotes());
     //})
+    getNotes().then((notes) => {
+      res.json(notes);
+    });
   });
   // create a new note
   app.post("/api/notes", function (req, res) {
     addNote(req.body).then((note) => {
       res.json(note);
     });
-    // let addNote = req.body;
-    // addNote.id = uuidv1();
-    //dbJson[dbJson.length - 1].id + 1;
-    // dbJson.push(addNote);
-    // fs.writeFile("./db/db.json", JSON.stringify(dbJson), (err) => {
-    //   if (err) throw err;
-    // });
-    // res.json(dbJson);
-    //get the notes by reading
-    // readAsync("../db/db.json", "utf8").then((notes) => {
-    //   //modify the notes to have id
-    //   let newNote = req.body;
-    //   newNote.id = uuidv1();
-    //   //dbJson.push(newNote);
-    //   let allNotes = notes;
-    //   allNotes.push(newNote);
-
-    //   writeAsync("../db/db.json", JSON.stringify(allNotes)).then(() => {
-    //     res.json()
-    //   });
-      // fs.writeFile("../db/db.json", JSON.stringify(dbJson), (err) => {
-      //     if (err) throw err;
-      //   });
-      //   res.json(dbJson);
-    //})
-  });
+      });
 
   // delete a note
 
@@ -83,18 +61,7 @@ module.exports = function (app) {
         message: `note ${id} has been destroyed`
       });
     });
-    // let jsonData = dbJson;
-
-    // let filterJsonData = jsonData.filter(
-    //   (addNote) => addNote.id !== req.params.id
-    // );
-    // console.log(filterJsonData);
-    // fs.writeFile("./db/db.json", JSON.stringify(filterJsonData), (err) => {
-    //   if (err) throw err;
-    // });
-    // res.json(
-    //   {id: req.params.id}
-    // );
+    
   });
 };
 
@@ -104,3 +71,5 @@ module.exports = function (app) {
 //modifiy the data if you need to
 
 //write the dat to db.db.json
+
+//send res
